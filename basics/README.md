@@ -14,3 +14,5 @@ Here's a graphic we collectively produced in ggplot2 that incorporates this week
 ##### Links
  - [ggplot2 documentation](http://docs.ggplot2.org)
  - Inegrating ggplot2 with D3 [via R-bloggers](http://www.r-bloggers.com/ggplot2-meet-d3/)
+ - Both [lattice](http://lmdvr.r-forge.r-project.org/figures/figures.html) and [ggplot2](http://ggplot2.org/book/) use the [grid](https://www.stat.auckland.ac.nz/~paul/grid/grid.html) graphics system on the backend for drawing. The [gridSVG](http://sjp.co.nz/projects/gridsvg) package can turn any R graphic drawn in grid into an SVG document. SVG is really handy for interactive graphics because each element of the image is drawn with a text command that can be altered interactively.
+ - [This blog post](http://timelyportfolio.blogspot.com/2013/08/gridsvganother-glue-for-r-to-svg.html) discusses making images in ggplot2, exporting them to SVG with gridSVG, and then making the SVG interactive for the Web with D3.
