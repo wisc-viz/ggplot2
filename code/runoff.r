@@ -1,7 +1,7 @@
 library(RCurl)
-url <- "https://raw.github.com/wisc-viz/ggplot2/data/runoff.csv"
-runoff <- getURL(url, ssl.verifypeer=FALSE)
-d <- read.table(textConnection(bike.data)
+url <- "https://raw.github.com/wisc-viz/ggplot2/master/data/runoff.csv"
+runoff_raw <- getURL(url)
+d <- read.csv(text=runoff_raw)
 
 #Quick-and-dirty:
 qplot(x=runoff$precip, y=runoff$sm, size=runoff$runoff)
