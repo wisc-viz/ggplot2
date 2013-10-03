@@ -1,15 +1,15 @@
-### Last things first
+## Last things first
 This is the choropleth map that we produced in this session:
 ![Final choropleth](img/map.png)
 
 
-### Choropleth maps
+## Choropleth maps
 We learned to produce choropleth maps in ggplot2, along the way learning about some ggplot syntax.
 
 These maps are drawn via the `geom_polygon` geometry, which draws each state as a polygon shape. We first need to import the shapefiles, which describe each state as a "connect the dots" series of lat/long points.
 
 
-#### Getting started: drawing shapes
+### Getting started: drawing shapes
 Happily, ggplot2 includes shapes for U.S. states and counties (among others). Import the state shapes and check out the top few rows:
 
 ```
@@ -40,7 +40,7 @@ We get the image:
 ![basic state shape choropleth](img/basic-choropleth.png)
 
 
-#### Adding meaningful colors:
+### Adding meaningful colors:
 Now add coloring based on the presidential election of 1960:
 
 ```
@@ -64,7 +64,7 @@ This time, the map looks like:
 ![Choropleth with ugly colors](img/ugly-colors.png)
 
 
-#### Controlling the appearance:
+### Controlling the appearance:
 Now we add the final touches: 
 
  - Adjust the color scheme to a blue-orange scale which goes to white at 50% (`scale_fill_gradient2(low=muted("blue"), mid="white", high="orange", name='Republican\nshare', midpoint=50)`)
