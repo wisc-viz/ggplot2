@@ -10,7 +10,7 @@ These maps are drawn via the `geom_polygon` geometry, which draws each state as 
 
 Happily, ggplot2 includes shapes for U.S. states and counties (among others). Import the state shapes:
 
-```
+```{r}
 library(ggplot2)
 st = map_data('states')
 ```
