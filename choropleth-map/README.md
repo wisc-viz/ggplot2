@@ -1,7 +1,7 @@
 ## Last things first
 This is the choropleth map that we produced in this session:
 ![Final choropleth](img/map.png)
-
+The code is worked out in detail below, and it's also available in the `code` directory
 
 ## Choropleth maps
 We learned to produce choropleth maps in ggplot2, along the way learning about some ggplot syntax.
@@ -14,7 +14,7 @@ Happily, ggplot2 includes shapes for U.S. states and counties (among others). Im
 
 ```
 library(ggplot2)
-st = map_data('states')
+st = map_data('state')
 head(st)
 ```
 
@@ -29,14 +29,13 @@ Now we build up the choropleth by layers. For the most basic plot (drawing the s
  - Tell ggplot2 that we're drawing polygons (`geom_polygon()`)
  
 Putting it together:
- 
+
 ```
-map = ggpot(st) + aes(long, lat, group=group) + geom_polygon()
+map = ggplot(st) + aes(long, lat, group=group) + geom_polygon()
 map
 ```
 
 We get the image:
-
 ![basic state shape choropleth](img/basic-choropleth.png)
 
 
@@ -49,24 +48,27 @@ data(votes.repub)
 
 #Grab the 1960 column and make the names lowercase to match the shapes:
 vote = votes.repub[,'1960']
-names(vote) = tolower(names(tovote))
+names(vote) = tolower(names(vote))
 
 #Now link the vote data to the state shapes by matching names:
 st$votes = vote[st$region]
 
 #Finally, add a color layer to the map:
-map = map + aes(fill=votes)
+map = ggplot(st) +
+	aes(long, lat, group=group) +
+	geom_polygon() +
+	aes(fill=votes)
 map
 ```
 
 This time, the map looks like:
-
 ![Choropleth with ugly colors](img/ugly-colors.png)
 
 
 ### Controlling the appearance:
 Now we add the final touches: 
 
+ - Import the `RColorBrewer` and `scales` packages for color handling (`library(RcolorBrewer); library(scales)`)
  - Adjust the color scheme to a blue-orange scale which goes to white at 50% (`scale_fill_gradient2(low=muted("blue"), mid="white", high="orange", name='Republican\nshare', midpoint=50)`)
  - Reproject from the default (Mercator) to Albers (`coord_map(project='globular')`)
  - Add a title (`theme(plot.title=element_text(face="bold"))`)
@@ -74,6 +76,8 @@ Now we add the final touches:
 Putting these steps together:
 
 ```
+library(RColorBrewer)
+library(scales)
 map = map + scale_fill_gradient2(low=muted("blue"),
 	mid="white", high="orange", midpoint=50,
 	name='Republican\nshare')
